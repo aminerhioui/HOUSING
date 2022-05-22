@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.octest.beans.Feedback;
 import com.octest.beans.Users;
 import com.octest.connection.Handler;
@@ -88,39 +90,6 @@ public class Administration {
 		
 		return users;
 	}
-	public Users getUserbyId(int id) {
-		loaddatabase();
-		ResultSet result=null;
-		Users user = new Users();
-		Statement statement=null;
-        try {
-        	statement = connection.createStatement();
-        	PreparedStatement preparedStatement = connection.prepareStatement("select firstname,lastname,tel,email,username,password from user where id=?;");
-        	preparedStatement.setInt(1, id);
-        	result = preparedStatement.executeQuery();
-        	while (result.next()) {
-        		user.setFristanme(result.getString(1));
-        		user.setLastname(result.getString(2));
-        		user.setTel(result.getString(3));
-        		user.setEmail(result.getString(4));
-        		user.setUsername(result.getString(5));
-        		user.setPassword(result.getString(6));
-            }
-        }catch(SQLException e) {
-        	e.printStackTrace();
-        }finally {
-        	try {
-                if (result != null)
-                    result.close();
-                if (statement != null)
-                    statement.close();
-                if (connection != null)
-                    connection.close();
-            } catch (SQLException ignore) {
-            }
-        }
-		return user;
-	}
 	public int getUsernumber(){
 		loaddatabase();
 		ResultSet result=null;
@@ -147,6 +116,40 @@ public class Administration {
         }
 		
 		return nbr;
+	}
+	public Users getUserbyUsername(String username) {
+		loaddatabase();
+		ResultSet result=null;
+		Users user = new Users();
+		Statement statement=null;
+        try {
+        	statement = connection.createStatement();
+        	PreparedStatement preparedStatement = connection.prepareStatement("select firstname,lastname,tel,email,username,password FROM housing_db.user where USERNAME=?;");
+    
+        	preparedStatement.setString(1, username );
+        	result = preparedStatement.executeQuery();
+        	while (result.next()) {
+        		user.setFristanme(result.getString(1));
+        		user.setLastname(result.getString(2));
+        		user.setTel(result.getString(3));
+        		user.setEmail(result.getString(4));
+        		user.setUsername(result.getString(5));
+        		user.setPassword(result.getString(6));
+            }
+        }catch(SQLException e) {
+        	e.printStackTrace();
+        }finally {
+        	try {
+                if (result != null)
+                    result.close();
+                if (statement != null)
+                    statement.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException ignore) {
+            }
+        }
+		return user;
 	}
 	public void loaddatabase() {
 		try {
