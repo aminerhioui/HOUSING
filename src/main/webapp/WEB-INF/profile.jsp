@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -10,22 +10,21 @@
     <meta name="author" content="Zahar Mohamed">
     <title>Housing</title>
     <link rel='icon' href='../images/home/logo.png' type='image/x-icon'>
-    <link rel="stylesheet" href="../css/style1.css" type="text/css" />
+    <link rel="stylesheet" href="../css/style.css" type="text/css" />
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
-   <body>
-    <div class="sidebar">
-    <div class="logo-details">
+	<body>
+	<div class="sidebar">
+    <div class="logo-details">                                                                                                                           
       <img src="../images/home/logo.png" class="icon">
         <div class="logo_name">Housing</div>
-        <i class='bx bx-menu' id="btn4" ></i>
     </div>
     <ul class="nav-list">
       <li class="title">General</li>
       <li>
-        <a href="/HOUSING/admin">
+        <a href="admin/">
           <i class='bx bxs-dashboard'></i>
           <span class="links_name">Dashboard</span>
         </a>
@@ -38,8 +37,8 @@
        </a>
       </li>
       <div class="sub1">
-      <li>
-       <a href="#">
+     	<li>
+       <a href="/HOUSING/admin/sidebar">
          <span class="sub_links_name">Sidebar</span>
        </a>
      </li>
@@ -61,7 +60,7 @@
        </a>
      </li>
      <li >
-       <a href="/HOUSING/admin/users">
+       <a href="admin/users">
          <i class='bx bxs-user'></i>
          <span class="links_name">Users</span>
        </a>
@@ -93,13 +92,13 @@
        </a>
      </li>
      <li>
-       <a href="/HOUSING/admin/theme">
+       <a href="admin/theme">
          <i class='bx bxs-brush-alt'></i>
          <span class="links_name">Themes</span>
        </a>
      </li>
      <li>
-       <a href="admin/profile">
+       <a href="#">
          <span class="links_name">Profile</span>
        </a>
      </li>
@@ -167,7 +166,7 @@
 
      <!-- <li class="profile">
          <div class="profile-details">
-           <img src="../img/user.png" alt="profileImg">
+           <img src="img/user.png" alt="profileImg">
            <div class="name_job">
              <div class="name">Zahar Mohamed</div>
              <div class="job">Front-end dev</div>
@@ -178,7 +177,7 @@
     </ul>
   </div>
   <div class="dashboard">
-      <section class="dashboard-header">
+	<section class="dashboard-header">
         <div class="titles-dash">
           <h2 id="big-title">Admin Dashboard</h2>
           <h3 id="small-title">Welcome to HouseNow</h3>
@@ -195,30 +194,76 @@
             <div class="clearfix"></div>
           </div>
           <div class="profile-btn-div">
-            <img src="../img/user-circle.png" class="profile-btn">
+            <!--<img src="img/user-circle.png" class="profile-btn">-->
+            <c:if test="${!empty sessionScope.user }">
+            	<a href="#" class="profile-btn"> ${ sessionScope.user.getUsername() }</a>
+            </c:if>
+            <c:if test="${empty sessionScope.user }">
+            	<img src="img/user-circle.png" class="profile-btn">
+            </c:if>
           </div>
           <div class="clearfix"></div>
         </div>
         <div class="clearfix"></div>
       </section>
-      <div class="profile_list">
-          <ul>
-            <li><a href="#">Profil</a></li>
-            <li><a href="#">Log out</a></li>
-          </ul>
-      </div>
-      <section class="themes">
-          <a href="#" class="box-color-side" style="background-image: url(../img/sidebar1.png);background-repeat: no-repeat;background-size: cover;">
-          </a>
-          <a href="#" class="box-color-side" style="background-image: url(../img/sidebar2.png);background-repeat: no-repeat;background-size: cover;">
-          </a>
-          <div class="clearfix"></div>
-      </section> 
-    </div>
+    
+        <div class="clearfix"></div>
+	        <section class="profile-header">
+	            <div class="profile-image"></div>
+	            <h3>Profil :</h3>
+	    	</section>
+	    	<section class="profile-content">
+	            <table class="profile-table">
+	                <tr>
+	                    <td><i class='bx bxs-user'></i></td>
+	                    <td><input type="search-box" name="email" class="profile-box" value ="<c:out value="${user.fristanme}"/>" required></td>
+	                    <td><i class='bx bxs-user-plus'></i></td>
+	                    <td><input type="search-box" name="email" value="<c:out value="${user.lastname}"/>" class="profile-box" required></td>
+	                </tr>
+	                <tr>
+	                    <td><i class='bx bxs-phone-call' ></i></td>
+	                    <td><input type="search-box" name="email" value="<c:out value="${user.tel}"/>" class="profile-box" required></td>
+	                    <td><i class='bx bx-mail-send' ></i></td>
+	                    <td><input type="search-box" name="email" value="<c:out value="${user.email}"/>" class="profile-box" required></td>
+	                </tr>
+	                <tr>
+	                    <td><i class='bx bxs-building-house' ></i></td>
+	                    <td><input type="search-box" name="email" value="<c:out value="${user.username}"/>" class="profile-box" required></td>
+	                    <td><i class='bx bxs-calendar' ></i></td>
+	                    <td><input type="search-box" name="email" value="<c:out value="${user.password}"/>" class="profile-box" required></td>
+	                </tr>
+	            </table>
+	    </section>
+	    <section class="profile-buttons">
+	        <a  href="#" id="profile-edit-button">Modifier</a>
+	        <a  href="#" id="profile-save-button">Enregistrer</a>
+	    </section>
+	    <section class="dashboard-footer">
+	        <div class="titles-dash">
+	          <h2 id="copyright">© Copyright HouseNew 2022 - All rights reserved</h2>
+	        </div>
+	        <div class="socials">
+	          <div class="social-btn-div">
+	            <a href="#" target="_blank"><img src="../img/facebook.png"></a>
+	          </div>
+	          <div class="social-btn-div">
+	            <a href="#" target="_blank"><img src="../img/linkedin.png"></a>
+	          </div>
+	          <div class="social-btn-div">
+	            <a href="#" target="_blank"><img src="../img/instagram.png"></a>
+	          </div>
+	          <div class="social-btn-div">
+	            <a href="#" target="_blank"><img src="../img/twitter.png"></a>
+	          </div>
+	          <div class="clearfix"></div>
+	        </div>
+	        <div class="clearfix"></div>
+	      </section>
+      </div>  
+    <script type="text/javascript" src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     <script type="text/javascript" src="../js/admin.js"></script>
     <script type="text/javascript" src="../js/chart.js"></script>
-    <script type="text/javascript" src="../js/themes.js"></script>
-    <script type="text/javascript" src="../js/script1.js"></script>
+    <script type="text/javascript" src="../js/scropt.js"></script>
 </body>
 </html>

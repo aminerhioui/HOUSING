@@ -51,7 +51,10 @@ public class servlet1 extends HttpServlet {
 			reserver=Integer.parseInt(n);
 		}
 		
-		
+		if(reserver==1) {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/card.html").forward(request, response);
+			reserver=0;
+			}
 		String path;
 		switch(id) {
 			case 1:
@@ -100,6 +103,7 @@ public class servlet1 extends HttpServlet {
 		}
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/detailProduct.jsp").forward(request, response);
+		
 	}
 	protected void select(String path,String img1[],HttpServletRequest request,HttpServletResponse response) {
 		Connection con;

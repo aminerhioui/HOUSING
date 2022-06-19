@@ -71,6 +71,9 @@ public class User {
 		
 		this.cerditCards.add(cerditCard);
 	}
+	public User(){
+		
+	}
 	public void setAdmin(Boolean admin) {
 		this.admin = admin;
 	}   

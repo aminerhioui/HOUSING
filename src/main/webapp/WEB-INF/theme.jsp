@@ -96,6 +96,11 @@
          <span class="links_name">Themes</span>
        </a>
      </li>
+     <li>
+       <a href="admin/profile">
+         <span class="links_name">Profile</span>
+       </a>
+     </li>
      <li class="title">System</li>
      <li>
        <a href="#" class="dropdown1">

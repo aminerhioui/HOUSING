@@ -41,6 +41,14 @@
     <servlet-name>Userrs</servlet-name>
     <url-pattern>/admin/users</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ProfileAdmin</servlet-name>
+    <servlet-class>com.octest.servlets.ProfileAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileAdmin</servlet-name>
+    <url-pattern>/admin/profile</url-pattern>
+  </servlet-mapping>
     
   
      <servlet>

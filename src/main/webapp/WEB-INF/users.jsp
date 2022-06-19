@@ -96,6 +96,11 @@
          <span class="links_name">Themes</span>
        </a>
      </li>
+     <li>
+       <a href="admin/profile">
+         <span class="links_name">Profile</span>
+       </a>
+     </li>
      <li class="title">System</li>
      <li>
        <a href="#" class="dropdown1">
@@ -210,12 +215,12 @@
                     <th>tel</th>
                     <th></th>
                 </tr>
-                <c:forEach items="${users}" var="uti">
+                <c:forEach var="uti" items="${users}">
 					<tr>
-                    	<td> ${uti.getUsername()} </td>
-                    	<td> ${uti.getFristanme()} </td>
-                    	<td> ${uti.getLastname()} </td>
-                    	<td> ${uti.getTel()} </td>
+                    	<td><c:out value="${uti.getUsername()}"/></td>
+                    	<td><c:out value="${uti.getFristanme()}"/></td>
+                    	<td><c:out value="${uti.getLastname()}"/></td>
+                    	<td><c:out value="${uti.getTel()}"/></td>
                     	<td><button id="modifier">modifier :</button><button id="annuler">supprimer :</button></td>
                 	</tr>
 				</c:forEach>
